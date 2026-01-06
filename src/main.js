@@ -1,6 +1,9 @@
 import mapboxgl from 'mapbox-gl';
 import gsap from 'gsap';
-import citiesData from './cities.json';
+import Papa from 'papaparse';
+
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRGpG5u16oKRt1KgtoM5HjBXqoCJMmzVrtcUrRNcYj3Y1kZBDLnuWqUNHSSJQUgJzrzrkYq2T3cLZOy/pub?output=csv';
+let citiesData = [];
 
 // Mapbox Token
 mapboxgl.accessToken = 'pk.eyJ1IjoiYnVpbGRocSIsImEiOiJjbWpzazloNWgwamxnM2NxdzZnbGdtOXF6In0.lfNHWVwW_6985TQNidi8yw';
@@ -68,12 +71,74 @@ function setFogState() {
     });
 }
 
-map.on('load', () => {
+// Initialize Application
+// Initialize Application
+async function initApp() {
+    try {
+        await fetchSheetData();
+        if (citiesData.length === 0) {
+            throw new Error('No data fetched from sheet');
+        }
+        initMap();
+    } catch (error) {
+        console.error('Live fetch failed:', error);
+        alert('Failed to load map data. Please try again later.');
+    }
+}
+
+async function fetchSheetData() {
+    return new Promise((resolve, reject) => {
+        Papa.parse(SHEET_URL, {
+            download: true,
+            header: true,
+            complete: function (results) {
+                if (results.data && results.data.length > 0) {
+                    console.log('CSV Fetched:', results.data.length, 'rows');
+                    citiesData = results.data.map(row => {
+                        let coords = null;
+                        // Handle multiple potential coordinate formats
+                        if (row.coordinates) {
+                            try {
+                                // Try JSON parse if it looks like "[lng, lat]"
+                                if (row.coordinates.startsWith('[')) {
+                                    coords = JSON.parse(row.coordinates);
+                                } else {
+                                    // Try splitting "lng, lat" string
+                                    const parts = row.coordinates.split(',').map(n => parseFloat(n.trim()));
+                                    if (parts.length === 2 && !isNaN(parts[0])) coords = parts;
+                                }
+                            } catch (e) {
+                                console.warn('Failed to parse coordinates:', row.coordinates);
+                            }
+                        } else if (row.latitude && row.longitude) {
+                            coords = [parseFloat(row.longitude), parseFloat(row.latitude)];
+                        } else if (row.Lat && row.Lng) {
+                            coords = [parseFloat(row.Lng), parseFloat(row.Lat)];
+                        }
+
+                        return {
+                            ...row,
+                            coordinates: coords
+                        };
+                    }).filter(city => city.city && city.coordinates);
+                    resolve();
+                } else {
+                    reject('Empty CSV');
+                }
+            },
+            error: function (err) {
+                // console.error('Papa Parse Error:', err);
+                reject(err);
+            }
+        });
+    });
+}
+
+function initMap() {
     // Add Markers
     citiesData.forEach(city => {
         // Skip entries without valid coordinates
         if (!city.coordinates || city.coordinates.length !== 2) {
-            console.warn(`Skipping ${city.city}: Invalid coordinates`, city.coordinates);
             return;
         }
 
@@ -107,6 +172,10 @@ map.on('load', () => {
             { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" }
         );
     }, 1000);
+}
+
+map.on('load', () => {
+    initApp();
 });
 
 // Search Logic
