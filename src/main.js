@@ -28,6 +28,12 @@ const btnProjection = document.getElementById('toggle-projection');
 const cityCounter = document.getElementById('city-counter');
 const cityCountValue = document.getElementById('city-count-value');
 
+// Modal Elements
+const modalGettingStarted = document.getElementById('modal-getting-started');
+const btnOpenModal = document.getElementById('btn-open-modal');
+const closeModalBtn = document.getElementById('close-modal');
+const btnStartParty = document.getElementById('btn-start-party');
+
 // State
 let markers = [];
 let mapMode = 'street'; // 'street', 'satellite', 'hybrid'
@@ -65,7 +71,7 @@ function setFogState() {
 map.on('load', () => {
     // Add Markers
     citiesData.forEach(city => {
-        // Skip entries without valid coordinates (e.g., Metaverse, Zoom)
+        // Skip entries without valid coordinates
         if (!city.coordinates || city.coordinates.length !== 2) {
             console.warn(`Skipping ${city.city}: Invalid coordinates`, city.coordinates);
             return;
@@ -92,6 +98,15 @@ map.on('load', () => {
     cityCountValue.textContent = citiesData.length;
     cityCounter.classList.remove('hidden');
     gsap.from(cityCounter, { opacity: 0, y: -20, delay: 1, duration: 1 });
+
+    // Show Getting Started Modal
+    setTimeout(() => {
+        modalGettingStarted.classList.remove('hidden');
+        gsap.fromTo(modalGettingStarted.children[0],
+            { scale: 0.9, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" }
+        );
+    }, 1000);
 });
 
 // Search Logic
@@ -233,20 +248,24 @@ btnProjection.addEventListener('click', () => {
         map.setProjection('globe');
         setFogState();
         btnProjection.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>2D/3D</span>
+            <span class="text-xs font-bold">2D/3D</span>
+            <div id="icon-projection">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
         `;
         map.zoomTo(1.5, { duration: 2000 });
     } else {
         map.setProjection('mercator');
         map.setFog({}); // Remove fog for 2D
         btnProjection.innerHTML = `
-           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-           </svg>
-           <span>2D/3D</span>
+            <span class="text-xs font-bold">2D/3D</span>
+            <div id="icon-projection">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                 </svg>
+            </div>
         `;
         map.flyTo({ center: [0, 20], zoom: 1 });
     }
@@ -343,5 +362,27 @@ map.on('dragstart', () => { userInteracting = true; });
 map.on('mouseup', () => { userInteracting = false; });
 map.on('touchend', () => { userInteracting = false; });
 map.on('dragend', () => { userInteracting = false; });
+
+// Modal Logic
+function openModal() {
+    modalGettingStarted.classList.remove('hidden');
+    gsap.fromTo(modalGettingStarted.children[0],
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" }
+    );
+}
+
+function closeModal() {
+    gsap.to(modalGettingStarted.children[0], {
+        scale: 0.9,
+        opacity: 0,
+        duration: 0.2,
+        onComplete: () => modalGettingStarted.classList.add('hidden')
+    });
+}
+
+btnOpenModal.addEventListener('click', openModal);
+closeModalBtn.addEventListener('click', closeModal);
+btnStartParty.addEventListener('click', closeModal);
 
 spinGlobe();
