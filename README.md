@@ -76,7 +76,7 @@ This will generate the optimized files in the `dist` directory.
 PIZZADAOMAP/
 ├── public/              # Static assets (Logos, Icons)
 ├── src/
-│   ├── cities.json      # City data source (Coordinates, Links, Hosts)
+│   ├── cities.csv       # (Optional) Local backup of city data
 │   ├── main.js          # Core application logic (Mapbox, Logic, Animations)
 │   └── style.css        # Global styles and Tailwind directives
 ├── index.html           # Main HTML entry point
@@ -91,16 +91,19 @@ PIZZADAOMAP/
 The Mapbox access token is configured in `src/main.js`. Replace it with your own token if you fork this project.
 
 ### Data
-City data is managed in `src/cities.json`. To add a new event:
-```json
-{
-  "city": "New City",
-  "coordinates": [longitude, latitude],
-  "event_registration_link": "https://...",
-  "drive_link": "https://...",
-  "telegram": "https://..."
-}
-```
+
+**Live Data Integration** 🟢
+This map is powered by a live Google Sheet. The application fetches data in real-time using `PapaParse` to process the CSV export.
+
+-   **Source**: A public Google Sheet CSV URL.
+-   **Updates**: To add a new party, the Google Sheet must be updated. Changes reflect on the map immediately after a refresh.
+-   **Structure**: The code automatically parses coordinate formats (JSON arrays or "lat, lng" strings).
+
+### Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to submit changes or update map data.
+
+This project enforces a [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a welcoming environment for all.
 
 ## 📄 License
 

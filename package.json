@@ -1,9 +1,15 @@
 {
   "name": "pizzadao-africa-map",
   "version": "1.0.0",
-  "description": "",
+  "description": "An interactive 3D globe visualization for the PizzaDAO Global Pizza Party, featuring real-time event data from Google Sheets.",
   "main": "src/main.js",
   "type": "module",
+  "author": "PizzaDAO",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BuildwithMc/pizzadaocitymap.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
