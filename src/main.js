@@ -25,6 +25,8 @@ const btnMode = document.getElementById('btn-mode');
 const btnTheme = document.getElementById('btn-theme');
 const btnLocation = document.getElementById('btn-location');
 const btnProjection = document.getElementById('toggle-projection');
+const cityCounter = document.getElementById('city-counter');
+const cityCountValue = document.getElementById('city-count-value');
 
 // State
 let markers = [];
@@ -63,6 +65,12 @@ function setFogState() {
 map.on('load', () => {
     // Add Markers
     citiesData.forEach(city => {
+        // Skip entries without valid coordinates (e.g., Metaverse, Zoom)
+        if (!city.coordinates || city.coordinates.length !== 2) {
+            console.warn(`Skipping ${city.city}: Invalid coordinates`, city.coordinates);
+            return;
+        }
+
         const markerEl = document.createElement('div');
         markerEl.className = 'marker pizza-marker';
 
@@ -79,6 +87,11 @@ map.on('load', () => {
 
         markers.push({ ...city, marker });
     });
+
+    // Update City Counter
+    cityCountValue.textContent = citiesData.length;
+    cityCounter.classList.remove('hidden');
+    gsap.from(cityCounter, { opacity: 0, y: -20, delay: 1, duration: 1 });
 });
 
 // Search Logic
@@ -114,13 +127,15 @@ searchInput.addEventListener('input', (e) => {
 // Select City & Fly To
 function selectCity(city) {
     spinEnabled = false;
-    map.flyTo({
-        center: city.coordinates,
-        zoom: 6,
-        essential: true,
-        speed: 1.5,
-        curve: 1
-    });
+    if (city.coordinates && city.coordinates.length === 2) {
+        map.flyTo({
+            center: city.coordinates,
+            zoom: 6,
+            essential: true,
+            speed: 1.5,
+            curve: 1
+        });
+    }
     showInfoCard(city);
 }
 
@@ -130,7 +145,7 @@ function showInfoCard(city) {
     document.getElementById('card-country').textContent = city.country;
     document.getElementById('card-region').textContent = city.region;
     document.getElementById('card-host').textContent = city.host;
-    document.getElementById('card-status').textContent = city.status;
+    document.getElementById('card-status').textContent = city.status || '';
 
     const telegramBtn = document.getElementById('card-telegram');
     if (city.telegram) {
@@ -141,16 +156,18 @@ function showInfoCard(city) {
     }
 
     const driveBtn = document.getElementById('card-drive');
-    if (city.drive_link) {
-        driveBtn.href = city.drive_link;
+    const driveLink = city['Party-Drive-Link'];
+    if (driveLink) {
+        driveBtn.href = driveLink;
         driveBtn.classList.remove('hidden');
     } else {
         driveBtn.classList.add('hidden');
     }
 
     const regBtn = document.getElementById('card-register');
-    if (city.event_registration_link) {
-        regBtn.href = city.event_registration_link;
+    const regLink = city['CITY-REGISTARTION-LINK'];
+    if (regLink) {
+        regBtn.href = regLink;
         regBtn.classList.remove('hidden');
     } else {
         regBtn.classList.add('hidden');
@@ -175,7 +192,15 @@ closeCardBtn.addEventListener('click', () => {
 
 // Zoom Controls
 btnZoomIn.addEventListener('click', () => map.zoomIn());
-btnZoomOut.addEventListener('click', () => map.zoomOut());
+btnZoomOut.addEventListener('click', () => {
+    map.flyTo({
+        center: [0, 20],
+        zoom: 1.5,
+        essential: true,
+        speed: 1.5,
+        curve: 1
+    });
+});
 
 // Map Mode Switcher
 btnMode.addEventListener('click', () => {
@@ -260,17 +285,19 @@ btnLocation.addEventListener('click', () => {
 
 function findNearbyCities(userLoc) {
     // Simple Haversine distance
-    const nearby = citiesData.map(city => {
-        const R = 6371; // km
-        const dLat = (city.coordinates[1] - userLoc[1]) * Math.PI / 180;
-        const dLon = (city.coordinates[0] - userLoc[0]) * Math.PI / 180;
-        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(userLoc[1] * Math.PI / 180) * Math.cos(city.coordinates[1] * Math.PI / 180) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        const distance = R * c;
-        return { ...city, distance };
-    }).sort((a, b) => a.distance - b.distance).slice(0, 5);
+    const nearby = citiesData
+        .filter(city => city.coordinates && city.coordinates.length === 2)
+        .map(city => {
+            const R = 6371; // km
+            const dLat = (city.coordinates[1] - userLoc[1]) * Math.PI / 180;
+            const dLon = (city.coordinates[0] - userLoc[0]) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(userLoc[1] * Math.PI / 180) * Math.cos(city.coordinates[1] * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distance = R * c;
+            return { ...city, distance };
+        }).sort((a, b) => a.distance - b.distance).slice(0, 5);
 
     // Show results in search container
     searchResults.innerHTML = '<div class="p-2 font-bold text-xs uppercase text-gray-400">Parties Near You</div>';
