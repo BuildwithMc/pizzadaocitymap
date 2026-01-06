@@ -1,0 +1,105 @@
+# PizzaDAO Global Party Map 🌍🍕
+
+An interactive 3D globe visualization for the PizzaDAO Global Pizza Party. This application allows users to explore pizza party events worldwide, featuring smooth animations, custom branding, and real-time event details.
+
+![PizzaDAO Map Preview](./public/pizzadao-logo.png)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBuildwithMc%2FPIZZADAOMAP)
+
+## ✨ Features
+
+-   **3D Globe Visualization**: Immersive Mapbox GL JS globe with atmospheric fog and star background.
+-   **Interactive Markers**: Custom PizzaDAO character markers for every event city.
+-   **City Search**: Real-time autocomplete search to quickly find and fly to any participating city.
+-   **Event Details**: Glassmorphism-styled info cards displaying:
+    -   Host Name
+    -   Event Status
+    -   **Registration Link** (Dynamic button)
+    -   **City Drive Link** (Dynamic button)
+    -   Telegram Community Link
+-   **View Controls**: Toggle between 3D Globe and 2D Mercator map projections.
+-   **Auto-Rotation**: Smooth, slow rotation when the map is idle to showcase the global scale.
+-   **Responsive Design**: Fully mobile-responsive UI with Tailwind CSS.
+
+## 🛠️ Tech Stack
+
+-   **Frontend**: Vanilla JavaScript (ES Modules)
+-   **Build Tool**: [Vite](https://vitejs.dev/)
+-   **Map Rendering**: [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/) (v3)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **Animations**: [GSAP](https://greensock.com/gsap/) (GreenSock Animation Platform)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+-   Node.js (v16.0.0 or higher)
+-   npm (v7.0.0 or higher)
+
+### Installation
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/BuildwithMc/PIZZADAOMAP.git
+    cd PIZZADAOMAP
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Start the development server**
+    ```bash
+    npm run dev
+    ```
+    The application will be available at `http://localhost:5173`.
+
+### Building for Production
+
+To create a production-ready build:
+
+```bash
+npm run build
+```
+
+This will generate the optimized files in the `dist` directory.
+
+## 📂 Project Structure
+
+```
+PIZZADAOMAP/
+├── public/              # Static assets (Logos, Icons)
+├── src/
+│   ├── cities.json      # City data source (Coordinates, Links, Hosts)
+│   ├── main.js          # Core application logic (Mapbox, Logic, Animations)
+│   └── style.css        # Global styles and Tailwind directives
+├── index.html           # Main HTML entry point
+├── tailwind.config.js   # Tailwind Theme Configuration
+├── package.json         # Dependencies and scripts
+└── vite.config.js       # Vite configuration
+```
+
+## 🎨 Customization
+
+### Mapbox Token
+The Mapbox access token is configured in `src/main.js`. Replace it with your own token if you fork this project.
+
+### Data
+City data is managed in `src/cities.json`. To add a new event:
+```json
+{
+  "city": "New City",
+  "coordinates": [longitude, latitude],
+  "event_registration_link": "https://...",
+  "drive_link": "https://...",
+  "telegram": "https://..."
+}
+```
+
+## 📄 License
+
+This project is created for **PizzaDAO**.
+
+---
+*Built with ❤️ and 🍕 by the PizzaDAO Community.*

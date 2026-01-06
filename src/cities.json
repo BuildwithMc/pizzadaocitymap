@@ -1,0 +1,1080 @@
+[
+  {
+    "city": "Faryab",
+    "country": "Afghanistan",
+    "region": "Middle East",
+    "host": "Unknown",
+    "telegram": "",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-faryab-1",
+    "drive_link": "",
+    "coordinates": [
+      64.905955,
+      36.0795613
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Kabul",
+    "country": "Afghanistan",
+    "region": "Middle East",
+    "host": "Unknown",
+    "telegram": "WhatsApp",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-kabul",
+    "drive_link": "",
+    "coordinates": [
+      69.207486,
+      34.5553494
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Mazar-e-Sharif",
+    "country": "Afghanistan",
+    "region": "Middle East",
+    "host": "Avocado Desperado",
+    "telegram": "https://t.me/+Q8ChxoCFslAzMzFh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-mazar-e-sharif",
+    "drive_link": "",
+    "coordinates": [
+      67.1138395,
+      36.7062182
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Sheberghan",
+    "country": "Afghanistan",
+    "region": "Middle East",
+    "host": "Unknown",
+    "telegram": "",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-sheberghan",
+    "drive_link": "",
+    "coordinates": [
+      65.7490624,
+      36.6817149
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Tirana",
+    "country": "Albania",
+    "region": "Eastern Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+De-WOUKfhihlYmVk",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-tirana-4",
+    "drive_link": "https://drive.google.com/drive/folders/1ri7WX4-x1YB5Tmkclik4rPgvbqgqXGsv",
+    "coordinates": [
+      19.8186982,
+      41.3275459
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Antigua",
+    "country": "Antigua",
+    "region": "Central America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+WBvUDAd8CY9kOWFh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-near-antigua-1",
+    "drive_link": "",
+    "coordinates": [
+      -61.796428,
+      17.060816
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Buenos Aires",
+    "country": "Argentina",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+Am905YSPAo1jMTkx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-buenos-aires",
+    "drive_link": "https://drive.google.com/drive/folders/1jyJ2XrTWCaRaG6doao3-HxAWcgh2VNf1?usp=drive_link",
+    "coordinates": [
+      -58.3821215,
+      -34.6036739
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Córdoba",
+    "country": "Argentina",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+oK58UluVeuFhZjgx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-crdoba-10",
+    "drive_link": "https://drive.google.com/drive/folders/1I0-ZM5sNh0ajsTMo4lBx611Ah39TiNp5?usp=drive_link",
+    "coordinates": [
+      -64.1887761,
+      -31.4200833
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Gualeguaychú Entre Ríos",
+    "country": "Argentina",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+kK8avIREGho1MWQ5",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-gualeguaych-entre-ros",
+    "drive_link": "https://drive.google.com/drive/folders/1vk88RnS8qXRJeDJmRDvLH8vYl24hFQbv?usp=drive_link",
+    "coordinates": [
+      -58.5285175,
+      -33.0093109
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "La Plata",
+    "country": "Argentina",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+tPDvp05Fw0BmYzZh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-la-plata-2025",
+    "drive_link": "https://drive.google.com/drive/folders/1_Y6AssMuuPORomFEYvihBdlbMzqaHcy2?usp=drive_link",
+    "coordinates": [
+      -57.9535657,
+      -34.9204948
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Mendoza",
+    "country": "Argentina",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+aM2DNNqo31VkZTc5",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-mendoza",
+    "drive_link": "https://drive.google.com/drive/folders/1rqdSTucwlvRs4WGsawxQgPg6yLE3F_c_?usp=drive_link",
+    "coordinates": [
+      -68.8458386,
+      -32.8894587
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Misiones",
+    "country": "Argentina",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+yISwTIJCl0QxYjcx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-misiones",
+    "drive_link": "https://drive.google.com/drive/folders/1z-_SWDwz33sL32YkGecju09w4oV4wTDP?usp=drive_link",
+    "coordinates": [
+      -54.4342138,
+      -26.9377146
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Rosario ",
+    "country": "Argentina",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+ktLf9LALBGZlYjU5",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-rosario-1",
+    "drive_link": "https://drive.google.com/drive/folders/1-uDicWuRByvKiUUwdAyuh58WHWgAGt6D?usp=drive_link",
+    "coordinates": [
+      -60.6930416,
+      -32.9587022
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Gyumri",
+    "country": "Armenia",
+    "region": "Middle East",
+    "host": "Andrea",
+    "telegram": "https://t.me/+pujGWaWqnEI2NGYx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-gyumri-8",
+    "drive_link": "",
+    "coordinates": [
+      43.8464971,
+      40.7929026
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Vanadzor",
+    "country": "Armenia",
+    "region": "Middle East",
+    "host": "Unknown",
+    "telegram": "https://t.me/+vgsVb0Gw_Bs0Mjdh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-vanadzor-101",
+    "drive_link": "",
+    "coordinates": [
+      44.4970268,
+      40.807399
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Yerevan",
+    "country": "Armenia",
+    "region": "Middle East",
+    "host": "Andrea",
+    "telegram": "https://t.me/+TBASb-ziPXBiZjAy",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-yerevan-3",
+    "drive_link": "",
+    "coordinates": [
+      44.515209,
+      40.1872023
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Adelaide",
+    "country": "Australia",
+    "region": "Oceania",
+    "host": "Unknown",
+    "telegram": "https://t.me/+GDtIMwgyoZ5mOTUx",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      138.6007456,
+      -34.9284989
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Brisbane",
+    "country": "Australia",
+    "region": "Oceania",
+    "host": "Unknown",
+    "telegram": "https://t.me/+MUqLxsm0M4s4ZDkx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-brisbane-2",
+    "drive_link": "",
+    "coordinates": [
+      153.0260341,
+      -27.4704528
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Gold Coast (Queensland)",
+    "country": "Australia",
+    "region": "Oceania",
+    "host": "Unknown",
+    "telegram": "https://t.me/+3ZfOj2tI3NowMjFh",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      153.380936,
+      -27.9769248
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Melbourne",
+    "country": "Australia",
+    "region": "Oceania",
+    "host": "Snax",
+    "telegram": "https://t.me/+VMUXCL1IsntlMjc5",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-melbourne",
+    "drive_link": "https://drive.google.com/drive/folders/1kuGiBglP40fXWm7prhIouJM2pXS4dZYM?usp=share_link",
+    "coordinates": [
+      144.9630576,
+      -37.8136276
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Perth",
+    "country": "Australia",
+    "region": "Oceania",
+    "host": "Unknown",
+    "telegram": "https://t.me/+jbMQUJtjAG0yMDY5",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      115.8616783,
+      -31.9513993
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Sydney",
+    "country": "Australia",
+    "region": "Oceania",
+    "host": "Crispy",
+    "telegram": "https://t.me/+j_xPt-6TXgQ0NmRh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/bitcoin-pizza-day-sydney",
+    "drive_link": "https://drive.google.com/drive/folders/1IyHOUTdsM36apUwiBqdyY_HYi7FJm-7H?usp=share_link",
+    "coordinates": [
+      151.2057136,
+      -33.8727409
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Innsbruck",
+    "country": "Austria",
+    "region": "Western Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+mE-D2SOrAps1M2E5",
+    "event_registration_link": "",
+    "drive_link": "https://drive.google.com/drive/folders/1iZVqTV60DVGY2nzOoQaFInJySjQFNQEb?usp=share_link",
+    "coordinates": [
+      11.3910349,
+      47.2675322
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Linz",
+    "country": "Austria",
+    "region": "Western Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+oo5s3q_J5Hc5ZGMx",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      14.285918,
+      48.3069096
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "region": "Western Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+Z8xFwfPs8MxkZjNh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-vienna",
+    "drive_link": "https://drive.google.com/drive/folders/1uvJM2ddRnXtLCy0z5TvkN_rZbcG7Uvca?usp=share_link",
+    "coordinates": [
+      16.3713095,
+      48.2080696
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Nassau",
+    "country": "Bahamas",
+    "region": "North America",
+    "host": "Unknown",
+    "telegram": "https://t.me/+4HAbUBUVpMY1ZTYx",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      -77.3503609,
+      25.0443312
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Dhaka",
+    "country": "Bangladesh",
+    "region": "Asia",
+    "host": "Lianna",
+    "telegram": "https://t.me/+bH7zVshRZB9iYWEx",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      90.4152376,
+      23.804093
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Antwerp",
+    "country": "Belgium",
+    "region": "Western Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+Ce_3l8rwPfViY2Qx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-antwerp",
+    "drive_link": "https://drive.google.com/drive/folders/1KkhoBqlX_ynzVS0S92wIViiHQgp8qRjy?usp=sharing",
+    "coordinates": [
+      4.4149903,
+      51.2199302
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Bruges",
+    "country": "Belgium",
+    "region": "Western Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+IWXHcddW5GI5Y2Ex",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      3.2250586,
+      51.2084508
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "region": "Western Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+18lGeHKKqiw4ZGJh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-brussels-7",
+    "drive_link": "",
+    "coordinates": [
+      4.3802052,
+      50.8260453
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Mechelen",
+    "country": "Belgium",
+    "region": "Western Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+ZjQb1HSSQxwxMjJk",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-mechelen-1",
+    "drive_link": "",
+    "coordinates": [
+      4.4793443,
+      51.0279827
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Belize City",
+    "country": "Belize",
+    "region": "",
+    "host": "Peas",
+    "telegram": "https://t.me/+79hCpu3tacA5NGMx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-belize-city-10",
+    "drive_link": "",
+    "coordinates": [
+      -88.1962133,
+      17.5045661
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Calavi",
+    "country": "Benin",
+    "region": "Africa",
+    "host": "Pineapple Ford Coppola",
+    "telegram": "https://t.me/+NfSwNeX1R2Y1Yzdh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-calavi",
+    "drive_link": "",
+    "coordinates": [
+      2.3468195,
+      6.4503024
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Thimphu",
+    "country": "Bhutan",
+    "region": "Asia",
+    "host": "Lianna",
+    "telegram": "https://t.me/+7ws-r97knwpiNmY5",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      89.6386108,
+      27.471586
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Cochabamba",
+    "country": "Bolivia",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+Vqhstej8FqQyMjIx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-cochabamba-2025-3",
+    "drive_link": "https://drive.google.com/drive/folders/12ezUU0AgARr57ZHUesQhF5Gom-vwpIeC?usp=sharing",
+    "coordinates": [
+      -66.1595813,
+      -17.3820091
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "La Paz",
+    "country": "Bolivia",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+tiNxBYnwRx83MDIx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-la-paz",
+    "drive_link": "https://drive.google.com/drive/folders/1Pp-EHYLOSlMZ0gAcGAIOiTrwaHaqbY_h?usp=drive_link",
+    "coordinates": [
+      -68.1212091,
+      -16.494359
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Mostar",
+    "country": "Bosnia",
+    "region": "Eastern Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+UdDKCH4OpTg1NDIx",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      17.8077578,
+      43.3437748
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Francistown",
+    "country": "Botswana",
+    "region": "Africa",
+    "host": "Pineapple Ford Coppola",
+    "telegram": "https://t.me/+KLqD4B7ryLAyZjA0",
+    "event_registration_link": "https://app.unlock-protocol.com/event/francistown-pizza-party",
+    "drive_link": "",
+    "coordinates": [
+      27.5143603,
+      -21.1661005
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Gaborone",
+    "country": "Botswana",
+    "region": "Africa",
+    "host": "Pineapple Ford Coppola",
+    "telegram": "https://t.me/+ymH9l-lc8oNlYmUx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-gaborone",
+    "drive_link": "https://drive.google.com/drive/folders/1eGI6NjtaU8bTOzmUUGH0keL4Tdn6YaLn?usp=sharing",
+    "coordinates": [
+      25.9077037,
+      -24.6580003
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Belo Horizonte",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Peas",
+    "telegram": "https://t.me/+MBnpRab-Wbw2MWI5",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-belo-horizonte-br-1",
+    "drive_link": "https://drive.google.com/drive/folders/1EidohvnoLkn5stGVxMWMsufnyXCrdTLZ?usp=drive_link",
+    "coordinates": [
+      -43.9386685,
+      -19.919052
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Brasilia",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+wGJjX7piV4gzM2Nh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-brasilia",
+    "drive_link": "https://drive.google.com/drive/folders/1jzZkO6c5fDbH-frsjG2J4ZV_175n6eNI?usp=drive_link",
+    "coordinates": [
+      -47.8918874,
+      -15.7975154
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Campinas",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-campinas",
+    "drive_link": "",
+    "coordinates": [
+      -47.0613327,
+      -22.9050824
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Curitiba",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Peas",
+    "telegram": "https://t.me/+TuwveySkWm4xYTgx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-curitiba",
+    "drive_link": "https://drive.google.com/drive/folders/1-ChM5Q7WxVgIfPtqrdidEdO0uks7l78b?usp=drive_link",
+    "coordinates": [
+      -49.2651984,
+      -25.4268985
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Florianopolis",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+XEDeLsqPBZllYzUx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-floripa",
+    "drive_link": "https://drive.google.com/drive/folders/1aLa6GJq9IadsFritFlUW5VXcUIFu6oIF?usp=drive_link",
+    "coordinates": [
+      -48.5468118,
+      -27.5968578
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Fortaleza",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Peas",
+    "telegram": "https://t.me/+kuccroQVpL05Yzgx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-fortaleza-br",
+    "drive_link": "https://drive.google.com/drive/folders/1txcCm_TMnja_Fn4gRfyw0CV3i3rYQ_YH?usp=drive_link",
+    "coordinates": [
+      -38.5270134,
+      -3.7327203
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Macaé",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Peas",
+    "telegram": "https://t.me/+jNq-cQiSFZ43OWQ5",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-maca-br-3",
+    "drive_link": "https://drive.google.com/drive/folders/1fRUuylgM_vkU4A2PsZ5gtuyxXG19ftQa?usp=drive_link",
+    "coordinates": [
+      -41.7827578,
+      -22.3837126
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Natal",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Peas",
+    "telegram": "https://t.me/+_vMAWwbDaEZhYTRh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-natal-br-1",
+    "drive_link": "https://drive.google.com/drive/folders/1rPP_lN3gQiLRfOHyZkMdIQGprkmHsQFS?usp=drive_link",
+    "coordinates": [
+      -35.1999708,
+      -5.7841695
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Porto Alegre",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+RhvB_7_MmjZmOWMx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-porto-alegre",
+    "drive_link": "https://drive.google.com/drive/folders/1BWl70KFPT0XfCE-0U_uPZ-CvTkDkTKVh?usp=drive_link",
+    "coordinates": [
+      -51.2089887,
+      -30.0368176
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Rio Claro",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Snax",
+    "telegram": "https://t.me/+8DE9E5TpXio0ZjJh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-rio-claro-1",
+    "drive_link": "",
+    "coordinates": [
+      -47.5596215,
+      -22.4107652
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Rio de Janeiro",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+Khe94ae94OMxOTdh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-rio-crypto-hub",
+    "drive_link": "https://drive.google.com/drive/folders/1On-KUMUurn-IA1G8SZSU1UpBFq1Urcd8?usp=drive_link",
+    "coordinates": [
+      -43.1728965,
+      -22.9068467
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Rocinha",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Peas",
+    "telegram": "",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      -43.2480087,
+      -22.987941
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Salvador Bahia",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+JRFX1SxqVTYzZDNh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-bahia-crypto-hub",
+    "drive_link": "https://drive.google.com/drive/folders/1j7AExIRvcsz8jarXvc7knSxMq7Rj79iC?usp=drive_link",
+    "coordinates": [
+      -38.501648,
+      -12.9777334
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Sao Paulo",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+Q_BUhWfjQdtkOGMx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-so-paulo",
+    "drive_link": "https://drive.google.com/drive/folders/12Y8V1lY18in90tLrqGay4OkwFER2rKhN?usp=drive_link",
+    "coordinates": [
+      -46.6395571,
+      -23.5557714
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Búzios",
+    "country": "Brazil",
+    "region": "South America",
+    "host": "Malbek ",
+    "telegram": "https://t.me/+WlqFgKPYcjJhMTFh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-buzios-brazil",
+    "drive_link": "https://drive.google.com/drive/folders/1WEDDZyVcu1x283zyUchOUy4kXUvhRY4_?usp=sharing",
+    "coordinates": [
+      -41.8833455,
+      -22.7553281
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "region": "Eastern Europe",
+    "host": "Andrea",
+    "telegram": "https://t.me/+BzYbFevfR9k0NjVh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-sofia-2",
+    "drive_link": "",
+    "coordinates": [
+      23.3218675,
+      42.6977082
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Ouagadougou",
+    "country": "Burkina Faso",
+    "region": "Africa",
+    "host": "Pineapple Ford Coppola",
+    "telegram": "https://t.me/+oFnFdTPoiu5mYmU5",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-ouagadougou-12",
+    "drive_link": "",
+    "coordinates": [
+      -1.5196603,
+      12.3714277
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Bujumbura",
+    "country": "Burundi",
+    "region": "Africa",
+    "host": "Pineapple Ford Coppola",
+    "telegram": "https://t.me/+Rggy1kNGygg5Mzdh",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      29.3598782,
+      -3.361378
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Phnom Penh",
+    "country": "Cambodia",
+    "region": "Asia",
+    "host": "Lianna",
+    "telegram": "https://t.me/+Pan9PiYoPv82M2Zh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-phnom-penh",
+    "drive_link": "",
+    "coordinates": [
+      104.9282099,
+      11.5563738
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Kelowna",
+    "country": "Canada",
+    "region": "North America",
+    "host": "Unknown",
+    "telegram": "https://t.me/+y3JXryPBr_RkODBh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-kelowna",
+    "drive_link": "",
+    "coordinates": [
+      -119.4965917,
+      49.8863235
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Calgary",
+    "country": "Canada Alberta",
+    "region": "North America",
+    "host": "Don Icy Toad",
+    "telegram": "https://t.me/+UxccHo5CQTxmNjJh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-calgary",
+    "drive_link": "",
+    "coordinates": [
+      -114.0718831,
+      51.0447331
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Edmonton",
+    "country": "Canada Alberta",
+    "region": "North America",
+    "host": "Don Icy Toad",
+    "telegram": "https://t.me/+LJ0EsIyEwjs5MjBh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-2025-edmonton",
+    "drive_link": "",
+    "coordinates": [
+      -113.4937355,
+      53.5461663
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Vancouver",
+    "country": "Canada British Columbia",
+    "region": "North America",
+    "host": "Don Icy Toad",
+    "telegram": "https://t.me/+1h_LYj6IrOk0NmVh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-vancouver-1",
+    "drive_link": "https://drive.google.com/drive/folders/16MNoIMXUmq8KNFQ5qnSVAHVs1za5BLYm?usp=share_link",
+    "coordinates": [
+      -123.1207375,
+      49.2827291
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Victoria",
+    "country": "Canada British Columbia",
+    "region": "North America",
+    "host": "Unknown",
+    "telegram": "https://t.me/+KF_9qDyWWsszMGIx",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      -123.3656444,
+      48.4284207
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Winnipeg",
+    "country": "Canada Manitoba",
+    "region": "North America",
+    "host": "Unknown",
+    "telegram": "https://t.me/+RvDmLMcR9KlhYTEx",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      -97.1385145,
+      49.8954221
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Labrador",
+    "country": "Canada Newfoundland",
+    "region": "",
+    "host": "Unknown",
+    "telegram": "",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      -61.7387586,
+      54.2730918
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Halifax",
+    "country": "Canada Nova Scotia",
+    "region": "North America",
+    "host": "Unknown",
+    "telegram": "https://t.me/+fLOZ2z7q19xmOWNh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/btc-pizza-day-halifax",
+    "drive_link": "",
+    "coordinates": [
+      -63.1005273,
+      44.8857087
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Hamilton",
+    "country": "Canada Ontario",
+    "region": "North America",
+    "host": "Unknown",
+    "telegram": "https://t.me/+gJPQnJFeGK1jOWM5",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      -79.8711024,
+      43.2557206
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Ottawa",
+    "country": "Canada Ontario",
+    "region": "North America",
+    "host": "Don Icy Toad",
+    "telegram": "https://t.me/+2h3lm4H0YZ1lMTRh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-ottawa-2025",
+    "drive_link": "",
+    "coordinates": [
+      -75.7003397,
+      45.4200572
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Toronto",
+    "country": "Canada Ontario",
+    "region": "North America",
+    "host": "Don Icy Toad",
+    "telegram": "https://t.me/+kk5ViBwxPnIzMDkx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/2025-global-pizza-party-toronto-1",
+    "drive_link": "https://drive.google.com/drive/folders/1hMtvfQBc0H-9s2G0Np4qcU3i1dcjIlu5?usp=share_link",
+    "coordinates": [
+      -79.3831843,
+      43.653226
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Waterloo",
+    "country": "Canada Ontario",
+    "region": "North America",
+    "host": "Don Icy Toad",
+    "telegram": "https://t.me/+r_9imDlPNhU2YmJh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-waterloo",
+    "drive_link": "",
+    "coordinates": [
+      -80.5204096,
+      43.4642578
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Montreal",
+    "country": "Canada Quebec",
+    "region": "North America",
+    "host": "Don Icy Toad",
+    "telegram": "https://t.me/+g0YK4rU95SRiNGMx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/bitcoin-pizza-day-2025-in-montral",
+    "drive_link": "",
+    "coordinates": [
+      -73.5673919,
+      45.5018869
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Saskatoon",
+    "country": "Canada Saskatchewan",
+    "region": "North America",
+    "host": "Don Icy Toad",
+    "telegram": "https://t.me/+LjPOB159sSthNDNh",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-saskatoon-1",
+    "drive_link": "",
+    "coordinates": [
+      -106.6701577,
+      52.157902
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Cayman Islands",
+    "country": "Cayman Islands",
+    "region": "Central America",
+    "host": "Addie",
+    "telegram": "https://t.me/+MvRD2I72Vt82YzEx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-2025-cayman-islands-20",
+    "drive_link": "",
+    "coordinates": [
+      -81.2546,
+      19.3133
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Coyaique ",
+    "country": "Chile",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      -72.0678986,
+      -45.5729842
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Puerto Varas",
+    "country": "Chile",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+8OCKqharNkVkMDRh",
+    "event_registration_link": "",
+    "drive_link": "",
+    "coordinates": [
+      -72.9847342,
+      -41.3172309
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Maullin",
+    "country": "Chile",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+kkaBTQya8YVmNTYx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-maulln",
+    "drive_link": "https://drive.google.com/drive/folders/1SBqS1FJgKqxQaOrZGLeAfH4AK24XBybw?usp=drive_link",
+    "coordinates": [
+      -73.6016737,
+      -41.6183881
+    ],
+    "status": "Announced"
+  },
+  {
+    "city": "Santiago",
+    "country": "Chile",
+    "region": "South America",
+    "host": "Malbek",
+    "telegram": "https://t.me/+oAq1WtYo2Wg3YTgx",
+    "event_registration_link": "https://app.unlock-protocol.com/event/global-pizza-party-santiago-5",
+    "drive_link": "",
+    "coordinates": [
+      0,
+      0
+    ],
+    "status": "Announced"
+  }
+]
