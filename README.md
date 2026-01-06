@@ -17,7 +17,12 @@ An interactive 3D globe visualization for the PizzaDAO Global Pizza Party. This 
     -   **Registration Link** (Dynamic button)
     -   **City Drive Link** (Dynamic button)
     -   Telegram Community Link
--   **View Controls**: Toggle between 3D Globe and 2D Mercator map projections.
+-   **Advanced View Controls**:
+    -   **Zoom In/Out**: Dedicated buttons for precise navigation.
+    -   **Map Modes**: Switch between **Street**, **Satellite**, and **Hybrid** views.
+    -   **Theme Toggle**: Switch between **Light** and **Dark** modes (Street view).
+    -   **2D/3D Toggle**: Switch between Globe and Mercator projections.
+-   **Geolocation**: "Locate Me" feature that auto-flies to user's location and finds the **closest 5 parties**.
 -   **Auto-Rotation**: Smooth, slow rotation when the map is idle to showcase the global scale.
 -   **Responsive Design**: Fully mobile-responsive UI with Tailwind CSS.
 

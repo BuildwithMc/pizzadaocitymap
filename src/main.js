@@ -19,29 +19,52 @@ const searchInput = document.getElementById('city-search');
 const searchResults = document.getElementById('search-results');
 const infoCard = document.getElementById('info-card');
 const closeCardBtn = document.getElementById('close-card');
-const toggleViewBtn = document.getElementById('toggle-view');
+const btnZoomIn = document.getElementById('btn-zoom-in');
+const btnZoomOut = document.getElementById('btn-zoom-out');
+const btnMode = document.getElementById('btn-mode');
+const btnTheme = document.getElementById('btn-theme');
+const btnLocation = document.getElementById('btn-location');
+const btnProjection = document.getElementById('toggle-projection');
 
 // State
 let markers = [];
+let mapMode = 'street'; // 'street', 'satellite', 'hybrid'
+let isDarkMode = true;
+let spinEnabled = true;
 let isGlobe = true;
 
+// Map Configs
+const STYLES = {
+    street: {
+        dark: 'mapbox://styles/mapbox/dark-v11',
+        light: 'mapbox://styles/mapbox/light-v11'
+    },
+    satellite: 'mapbox://styles/mapbox/satellite-v9',
+    hybrid: 'mapbox://styles/mapbox/satellite-streets-v12'
+};
+
 map.on('style.load', () => {
-    map.setFog({
-        'color': 'rgb(186, 210, 235)', // Lower atmosphere
-        'high-color': 'rgb(36, 92, 223)', // Upper atmosphere
-        'horizon-blend': 0.02, // Atmosphere thickness (default 0.2 at low zooms)
-        'space-color': 'rgb(11, 11, 25)', // Background color
-        'star-intensity': 0.6 // Background star brightness (default 0.35 at low zooms )
-    });
+    // Only set fog if in a mode that looks good with it (usually good for all globe views)
+    if (isGlobe) {
+        setFogState();
+    }
 });
+
+function setFogState() {
+    map.setFog({
+        'color': isDarkMode ? 'rgb(186, 210, 235)' : 'rgb(255, 255, 255)',
+        'high-color': isDarkMode ? 'rgb(36, 92, 223)' : 'rgb(200, 200, 255)',
+        'horizon-blend': 0.02,
+        'space-color': isDarkMode ? 'rgb(11, 11, 25)' : 'rgb(240, 240, 240)',
+        'star-intensity': isDarkMode ? 0.6 : 0.0
+    });
+}
 
 map.on('load', () => {
     // Add Markers
     citiesData.forEach(city => {
         const markerEl = document.createElement('div');
         markerEl.className = 'marker pizza-marker';
-
-        // Add hover effects via JS or leave to CSS (CSS handled)
 
         const marker = new mapboxgl.Marker({
             element: markerEl,
@@ -90,10 +113,7 @@ searchInput.addEventListener('input', (e) => {
 
 // Select City & Fly To
 function selectCity(city) {
-    // Stop spinning when checking a city
     spinEnabled = false;
-
-    // Animate FlyTo
     map.flyTo({
         center: city.coordinates,
         zoom: 6,
@@ -101,8 +121,6 @@ function selectCity(city) {
         speed: 1.5,
         curve: 1
     });
-
-    // Populate and Show Card
     showInfoCard(city);
 }
 
@@ -139,8 +157,6 @@ function showInfoCard(city) {
     }
 
     infoCard.classList.remove('hidden');
-
-    // Animate Card Entrance
     gsap.fromTo(infoCard,
         { y: 50, opacity: 0, scale: 0.9 },
         { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }
@@ -157,30 +173,129 @@ closeCardBtn.addEventListener('click', () => {
     });
 });
 
-// Toggle Globe / Map
-toggleViewBtn.addEventListener('click', () => {
+// Zoom Controls
+btnZoomIn.addEventListener('click', () => map.zoomIn());
+btnZoomOut.addEventListener('click', () => map.zoomOut());
+
+// Map Mode Switcher
+btnMode.addEventListener('click', () => {
+    if (mapMode === 'street') {
+        mapMode = 'satellite';
+        map.setStyle(STYLES.satellite);
+    } else if (mapMode === 'satellite') {
+        mapMode = 'hybrid';
+        map.setStyle(STYLES.hybrid);
+    } else {
+        mapMode = 'street';
+        map.setStyle(isDarkMode ? STYLES.street.dark : STYLES.street.light);
+    }
+});
+
+// Theme Toggle
+btnTheme.addEventListener('click', () => {
+    isDarkMode = !isDarkMode;
+    if (mapMode === 'street') {
+        map.setStyle(isDarkMode ? STYLES.street.dark : STYLES.street.light);
+    }
+    // Updated setFog call if globe is active
+    if (isGlobe) setFogState();
+});
+
+// 2D/3D Toggle
+btnProjection.addEventListener('click', () => {
     isGlobe = !isGlobe;
     if (isGlobe) {
         map.setProjection('globe');
-        toggleViewBtn.textContent = 'Switch to 2D Map';
+        setFogState();
+        btnProjection.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>2D/3D</span>
+        `;
         map.zoomTo(1.5, { duration: 2000 });
-        map.setFog({ // Restore fog
-            'color': 'rgb(186, 210, 235)',
-            'high-color': 'rgb(36, 92, 223)',
-            'space-color': 'rgb(11, 11, 25)'
-        });
     } else {
-        map.setProjection('mercator'); // or 'equirectangular'
-        toggleViewBtn.textContent = 'Switch to 3D Globe';
-        map.setFog({}); // Remove fog for 2D look
+        map.setProjection('mercator');
+        map.setFog({}); // Remove fog for 2D
+        btnProjection.innerHTML = `
+           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+           </svg>
+           <span>2D/3D</span>
+        `;
         map.flyTo({ center: [0, 20], zoom: 1 });
     }
 });
 
+// Geolocation
+btnLocation.addEventListener('click', () => {
+    if (!navigator.geolocation) {
+        alert('Geolocation is not supported by your browser');
+        return;
+    }
+
+    btnLocation.classList.add('animate-pulse');
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            btnLocation.classList.remove('animate-pulse');
+            const userLocation = [position.coords.longitude, position.coords.latitude];
+
+            // Fly to location
+            map.flyTo({
+                center: userLocation,
+                zoom: 10,
+                essential: true
+            });
+
+            // Find nearby cities
+            findNearbyCities(userLocation);
+        },
+        () => {
+            btnLocation.classList.remove('animate-pulse');
+            alert('Unable to retrieve your location');
+        }
+    );
+});
+
+function findNearbyCities(userLoc) {
+    // Simple Haversine distance
+    const nearby = citiesData.map(city => {
+        const R = 6371; // km
+        const dLat = (city.coordinates[1] - userLoc[1]) * Math.PI / 180;
+        const dLon = (city.coordinates[0] - userLoc[0]) * Math.PI / 180;
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(userLoc[1] * Math.PI / 180) * Math.cos(city.coordinates[1] * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const distance = R * c;
+        return { ...city, distance };
+    }).sort((a, b) => a.distance - b.distance).slice(0, 5);
+
+    // Show results in search container
+    searchResults.innerHTML = '<div class="p-2 font-bold text-xs uppercase text-gray-400">Parties Near You</div>';
+    searchResults.classList.remove('hidden');
+
+    nearby.forEach(city => {
+        const div = document.createElement('div');
+        div.className = 'p-2 hover:bg-white/10 cursor-pointer text-sm border-b border-white/10 last:border-0';
+        div.innerHTML = `
+            <div class="flex justify-between items-center">
+                <span><span class="font-bold text-pizza-yellow">${city.city}</span>, ${city.country}</span>
+                <span class="text-xs opacity-70">${Math.round(city.distance)} km</span>
+            </div>
+        `;
+        div.addEventListener('click', () => {
+            selectCity(city);
+            searchResults.classList.add('hidden');
+        });
+        searchResults.appendChild(div);
+    });
+}
+
 // Spin Animation
 let userInteracting = false;
-let spinEnabled = true;
-const secondsPerRevolution = 120; // 2 minutes per revolution
+const secondsPerRevolution = 120;
 const maxSpinZoom = 5;
 
 function spinGlobe() {
@@ -198,13 +313,8 @@ function spinGlobe() {
 map.on('mousedown', () => { userInteracting = true; });
 map.on('touchstart', () => { userInteracting = true; });
 map.on('dragstart', () => { userInteracting = true; });
-
-// Resume spinning after interaction ends
 map.on('mouseup', () => { userInteracting = false; });
 map.on('touchend', () => { userInteracting = false; });
 map.on('dragend', () => { userInteracting = false; });
-// Use visual check, not relying on moveend for now to avoid conflicts with jumpTo
-// map.on('moveend', () => { userInteracting = false; }); 
 
-// Start the loop
 spinGlobe();

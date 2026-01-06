@@ -15,11 +15,12 @@
 
   <!-- Logo Overlay (Top Left) -->
   <div class="absolute top-4 left-4 z-10">
-    <img src="/pizzadao-logo.png" alt="PizzaDAO Logo" class="h-16 w-auto drop-shadow-lg filter">
+    <img src="/pizzadao-logo.png" alt="PizzaDAO Logo" class="h-8 md:h-10 w-auto drop-shadow-lg filter">
   </div>
 
-  <!-- Search Overlay (Top Right) -->
-  <div class="absolute top-4 right-4 z-10 w-full max-w-md px-4">
+  <!-- Search Overlay (Responsive Position) -->
+  <!-- Mobile: Below Logo, Desktop: Top Right -->
+  <div class="absolute top-14 left-4 right-4 md:top-4 md:left-auto md:right-4 z-10 md:w-96">
     <div class="glass-card rounded-xl p-2 flex items-center">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300 ml-2" fill="none" viewBox="0 0 24 24"
         stroke="currentColor">
@@ -34,10 +35,71 @@
     </div>
   </div>
 
-  <!-- View Controls -->
-  <div class="absolute bottom-8 right-8 z-10 flex flex-col gap-2">
-    <button id="toggle-view" class="glass-card px-4 py-2 rounded-lg text-white font-bold hover:bg-white/20 transition">
-      Switch to 2D Map
+  <!-- Map Controls (Bottom Right) -->
+  <div class="absolute bottom-8 right-4 md:right-8 z-10 flex flex-col gap-3 items-end">
+
+    <!-- 2D/3D Toggle -->
+    <button id="toggle-projection"
+      class="glass-card px-3 py-2 rounded-lg text-white font-bold hover:bg-white/20 transition flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span>2D/3D</span>
+    </button>
+
+    <!-- Map Mode & Theme -->
+    <div class="glass-card p-1 rounded-lg flex flex-col gap-1 w-full md:w-auto">
+      <button id="btn-mode"
+        class="p-2 hover:bg-white/20 rounded transition text-white flex items-center gap-2 justify-end md:justify-center"
+        title="Switch Map Mode">
+        <span class="text-xs font-bold mr-1">MODE</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+      </button>
+      <button id="btn-theme"
+        class="p-2 hover:bg-white/20 rounded transition text-white flex items-center gap-2 justify-end md:justify-center"
+        title="Toggle Light/Dark Theme">
+        <span class="text-xs font-bold mr-1">THEME</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Zoom Controls -->
+    <div class="glass-card p-1 rounded-lg flex flex-col gap-1 w-full md:w-auto">
+      <button id="btn-zoom-in"
+        class="p-2 hover:bg-white/20 rounded transition text-white flex items-center gap-2 justify-end md:justify-center"
+        title="Zoom In">
+        <span class="text-xs font-bold mr-1">ZOOM</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+      </button>
+      <button id="btn-zoom-out"
+        class="p-2 hover:bg-white/20 rounded transition text-white flex items-center gap-2 justify-end md:justify-center"
+        title="Zoom Out">
+        <span class="text-xs font-bold mr-1">OUT</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Geolocation -->
+    <button id="btn-location"
+      class="glass-card px-4 py-3 rounded-full hover:bg-white/20 transition text-white flex items-center gap-2"
+      title="My Location">
+      <span class="font-bold text-sm">LOCATE ME</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
     </button>
   </div>
 
