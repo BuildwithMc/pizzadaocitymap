@@ -1,12 +1,16 @@
 import mapboxgl from 'mapbox-gl';
 import gsap from 'gsap';
 import Papa from 'papaparse';
+import MapboxDirections from '@mapbox/mapbox-sdk/services/directions';
 
 const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRGpG5u16oKRt1KgtoM5HjBXqoCJMmzVrtcUrRNcYj3Y1kZBDLnuWqUNHSSJQUgJzrzrkYq2T3cLZOy/pub?output=csv';
 let citiesData = [];
 
 // Mapbox Token
 mapboxgl.accessToken = 'pk.eyJ1IjoiYnVpbGRocSIsImEiOiJjbWpzazloNWgwamxnM2NxdzZnbGdtOXF6In0.lfNHWVwW_6985TQNidi8yw';
+
+// Initialize Directions Client
+const directionsClient = MapboxDirections({ accessToken: mapboxgl.accessToken });
 
 // Initialize Map
 const map = new mapboxgl.Map({
@@ -22,14 +26,31 @@ const searchInput = document.getElementById('city-search');
 const searchResults = document.getElementById('search-results');
 const infoCard = document.getElementById('info-card');
 const closeCardBtn = document.getElementById('close-card');
+const btnAttend = document.getElementById('btn-attend');
 const btnZoomIn = document.getElementById('btn-zoom-in');
 const btnZoomOut = document.getElementById('btn-zoom-out');
 const btnMode = document.getElementById('btn-mode');
 const btnTheme = document.getElementById('btn-theme');
+const btnLang = document.getElementById('btn-lang');
 const btnLocation = document.getElementById('btn-location');
 const btnProjection = document.getElementById('toggle-projection');
 const cityCounter = document.getElementById('city-counter');
 const cityCountValue = document.getElementById('city-count-value');
+
+// Nav UI
+const navPanel = document.getElementById('nav-panel');
+const navDestName = document.getElementById('nav-dest-name');
+const btnExitNav = document.getElementById('btn-exit-nav');
+const navDuration = document.getElementById('nav-duration');
+const navDistance = document.getElementById('nav-distance');
+const navInstruction = document.getElementById('nav-instruction');
+const navModeBtns = document.querySelectorAll('.nav-mode-btn');
+
+
+// Language Modal
+const modalLanguage = document.getElementById('modal-language');
+const closeLangModal = document.getElementById('close-lang-modal');
+const langGrid = document.getElementById('lang-grid');
 
 // Modal Elements
 const modalGettingStarted = document.getElementById('modal-getting-started');
@@ -43,6 +64,28 @@ let mapMode = 'street'; // 'street', 'satellite', 'hybrid'
 let isDarkMode = true;
 let spinEnabled = true;
 let isGlobe = true;
+
+// Nav State
+let isNavigating = false;
+let navWatchId = null;
+let currentRoute = null;
+let navDestination = null;
+let navMode = 'driving'; // driving, cycling, walking
+let userCurrentLocation = null;
+
+// Languages
+const LANGUAGES = [
+    { code: 'en', name: 'English' }, { code: 'es', name: 'Spanish' }, { code: 'fr', name: 'French' },
+    { code: 'de', name: 'German' }, { code: 'ru', name: 'Russian' }, { code: 'zh-Hans', name: 'Chinese (Simplified)' },
+    { code: 'pt', name: 'Portuguese' }, { code: 'ar', name: 'Arabic' }, { code: 'ja', name: 'Japanese' },
+    { code: 'ko', name: 'Korean' }, { code: 'it', name: 'Italian' }, { code: 'hi', name: 'Hindi' },
+    { code: 'tr', name: 'Turkish' }, { code: 'vi', name: 'Vietnamese' }, { code: 'pl', name: 'Polish' },
+    { code: 'nl', name: 'Dutch' }, { code: 'id', name: 'Indonesian' }, { code: 'th', name: 'Thai' },
+    { code: 'sv', name: 'Swedish' }, { code: 'uk', name: 'Ukrainian' }, { code: 'el', name: 'Greek' },
+    { code: 'cs', name: 'Czech' }, { code: 'ro', name: 'Romanian' }, { code: 'hu', name: 'Hungarian' },
+    { code: 'fi', name: 'Finnish' }, { code: 'da', name: 'Danish' }, { code: 'no', name: 'Norwegian' },
+    { code: 'he', name: 'Hebrew' }
+];
 
 // Map Configs
 const STYLES = {
@@ -210,6 +253,7 @@ searchInput.addEventListener('input', (e) => {
 
 // Select City & Fly To
 function selectCity(city) {
+    selectedCityData = city; // Store for nav
     spinEnabled = false;
     if (city.coordinates && city.coordinates.length === 2) {
         map.flyTo({
@@ -453,5 +497,456 @@ function closeModal() {
 btnOpenModal.addEventListener('click', openModal);
 closeModalBtn.addEventListener('click', closeModal);
 btnStartParty.addEventListener('click', closeModal);
+
+
+// --- Language Logic ---
+
+// Populate Language Grid
+LANGUAGES.forEach(lang => {
+    const btn = document.createElement('button');
+    btn.className = 'p-3 rounded-lg bg-white/10 hover:bg-white/20 text-left transition select-none';
+    btn.innerHTML = `<span class="font-bold text-sm block text-pizza-yellow">${lang.code.toUpperCase()}</span><span class="text-xs opacity-70">${lang.name}</span>`;
+    btn.addEventListener('click', () => {
+        setLanguage(lang.code);
+        closeLangModal.click();
+    });
+    langGrid.appendChild(btn);
+});
+
+function setLanguage(langCode) {
+    const style = map.getStyle();
+    if (!style || !style.layers) return;
+
+    // Detect all symbol layers that display text
+    const labelLayers = style.layers.filter(layer =>
+        layer.type === 'symbol' &&
+        layer.layout &&
+        layer.layout['text-field']
+    );
+
+    labelLayers.forEach(layer => {
+        // Construct the new text-field expression
+        // We assume standard Mapbox naming conventions: name_en, name_fr, etc.
+        // We use 'coalesce' to try the specific language, then English, then the default 'name'
+
+        // Some layers might use complex expressions, but for standard styles, 
+        // replacing the text-field with this coalesce logic usually works for multilingual support.
+
+        try {
+            map.setLayoutProperty(layer.id, 'text-field', [
+                'coalesce',
+                ['get', `name_${langCode}`],
+                ['get', 'name_en'],
+                ['get', 'name']
+            ]);
+        } catch (e) {
+            // Ignore layers that might fail (e.g., custom layers with different data schemas)
+            console.warn(`Could not set language for layer ${layer.id}`, e);
+        }
+    });
+
+    alert(`Language switched to ${langCode.toUpperCase()}`);
+}
+
+btnLang.addEventListener('click', () => {
+    modalLanguage.classList.remove('hidden');
+    gsap.fromTo(modalLanguage.children[0], { scale: 0.95, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.2 });
+});
+
+closeLangModal.addEventListener('click', () => {
+    modalLanguage.classList.add('hidden');
+});
+
+
+// --- Navigation Logic ---
+
+btnAttend.addEventListener('click', () => {
+    if (!selectedCityData) return;
+    startNavigation(selectedCityData);
+});
+
+let selectedCityData = null;
+
+// Start Nav
+function startNavigation(city) {
+    isNavigating = true;
+    navDestination = city.coordinates;
+    navDestName.textContent = city.city;
+
+    // Hide standard UI
+    infoCard.classList.add('hidden');
+    cityCounter.classList.add('hidden');
+    document.querySelector('.absolute.top-0').classList.add('hidden'); // Top overlay
+
+    // Show Nav Panel
+    navPanel.classList.remove('hidden');
+    gsap.from(navPanel, { y: -20, opacity: 0, duration: 0.5 });
+
+    // Switch to 2D
+    if (isGlobe) {
+        isGlobe = false;
+        map.setProjection('mercator');
+        map.setFog({});
+        btnProjection.innerHTML = `<span class="text-xs font-bold">2D/3D</span>...`;
+    }
+
+    // Start Location Watch
+    if (navigator.geolocation) {
+        navWatchId = navigator.geolocation.watchPosition(updateNavPosition, (err) => {
+            console.error('Nav Geo Error', err);
+            alert('Location access required for navigation.');
+        }, {
+            enableHighAccuracy: true,
+            maximumAge: 2000
+        });
+    }
+
+    // Initial Route Fetch
+    navInstruction.textContent = "Locating you...";
+    navInstruction.classList.remove('hidden');
+}
+
+// Exit Nav
+btnExitNav.addEventListener('click', () => {
+    isNavigating = false;
+    if (navWatchId) navigator.geolocation.clearWatch(navWatchId);
+
+    navPanel.classList.add('hidden');
+    infoCard.classList.remove('hidden');
+    cityCounter.classList.remove('hidden');
+    document.querySelector('.absolute.top-0').classList.remove('hidden');
+
+    // Remove route layers
+    if (map.getLayer('route')) map.removeLayer('route');
+    if (map.getSource('route')) map.removeSource('route');
+    if (map.getLayer('user-location-dot')) map.removeLayer('user-location-dot');
+    if (map.getSource('user-location')) map.removeSource('user-location');
+
+    // Reset view
+    map.flyTo({
+        center: navDestination,
+        zoom: 12,
+        pitch: 0,
+        bearing: 0
+    });
+});
+
+// Store previous location for bearing calculation
+let previousLocation = null;
+
+function updateNavPosition(pos) {
+    const lng = pos.coords.longitude;
+    const lat = pos.coords.latitude;
+    userCurrentLocation = [lng, lat];
+
+    // Track User
+    map.flyTo({
+        center: [lng, lat],
+        zoom: 15,
+        bearing: pos.coords.heading || 0,
+        pitch: 50,
+        duration: 1000,
+        ease: 'linear'
+    });
+
+    // Add/Update User Marker on Map 
+    if (!map.getSource('user-location')) {
+        map.addSource('user-location', {
+            type: 'geojson',
+            data: {
+                type: 'Feature',
+                geometry: { type: 'Point', coordinates: [lng, lat] }
+            }
+        });
+        map.addLayer({
+            id: 'user-location-dot',
+            type: 'circle',
+            source: 'user-location',
+            paint: {
+                'circle-radius': 8,
+                'circle-color': '#007cbf',
+                'circle-stroke-width': 2,
+                'circle-stroke-color': '#fff'
+            }
+        });
+    } else {
+        map.getSource('user-location').setData({
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [lng, lat] }
+        });
+    }
+
+    // Fetch Route if not fetched or significant move
+    if (!lastFetchLocation || distance(userCurrentLocation, lastFetchLocation) > 0.05) {
+        debouncedFetchRoute(userCurrentLocation, navDestination);
+    }
+}
+
+function calculateBearing(start, end) {
+    const startLat = start[1] * Math.PI / 180;
+    const startLng = start[0] * Math.PI / 180;
+    const endLat = end[1] * Math.PI / 180;
+    const endLng = end[0] * Math.PI / 180;
+    const y = Math.sin(endLng - startLng) * Math.cos(endLat);
+    const x = Math.cos(startLat) * Math.sin(endLat) -
+        Math.sin(startLat) * Math.cos(endLat) * Math.cos(endLng - startLng);
+    const theta = Math.atan2(y, x);
+    return (theta * 180 / Math.PI + 360) % 360;
+}
+
+function updateUserMarker(lng, lat) {
+    if (!map.getSource('user-location')) {
+        map.addSource('user-location', {
+            type: 'geojson',
+            data: {
+                type: 'Feature',
+                geometry: { type: 'Point', coordinates: [lng, lat] }
+            }
+        });
+        map.addLayer({
+            id: 'user-location-puck',
+            type: 'circle',
+            source: 'user-location',
+            paint: {
+                'circle-radius': 12,
+                'circle-color': '#2A60E4',
+                'circle-stroke-width': 3,
+                'circle-stroke-color': '#fff'
+            }
+        });
+        // Direction arrow
+        map.addLayer({
+            id: 'user-location-arrow',
+            type: 'symbol',
+            source: 'user-location',
+            layout: {
+                'icon-image': 'arrow', // primitive, might need custom icon
+                'icon-size': 0.5,
+                'icon-rotate': ['get', 'bearing'],
+                'icon-allow-overlap': true
+            }
+        });
+    } else {
+        map.getSource('user-location').setData({
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [lng, lat] }
+        });
+    }
+}
+
+
+// --- Routes ---
+
+let lastFetchLocation = null;
+let routeCache = {};
+let fetchTimeout = null;
+
+function debouncedFetchRoute(start, end) {
+    if (fetchTimeout) clearTimeout(fetchTimeout);
+    fetchTimeout = setTimeout(() => {
+        fetchRoute(start, end);
+        prefetchAllModes(start, end); // Optimize: fetch others in background
+    }, 1000);
+}
+
+async function fetchRoute(start, end) {
+    if (!start || !end) return;
+
+    // Cache Key
+    const key = `${navMode}-${start[0].toFixed(3)},${start[1].toFixed(3)}-${end[0].toFixed(3)},${end[1].toFixed(3)}`;
+
+    if (routeCache[key]) {
+        renderRoute(routeCache[key]);
+        return;
+    }
+
+    lastFetchLocation = start;
+
+    const profile = navMode === 'driving' ? 'driving-traffic' : navMode;
+
+    try {
+        const response = await directionsClient.getDirections({
+            profile: profile,
+            waypoints: [
+                { coordinates: start },
+                { coordinates: end }
+            ],
+            geometries: 'geojson',
+            overview: 'full'
+        }).send();
+
+        if (response && response.body && response.body.routes && response.body.routes.length > 0) {
+            const route = response.body.routes[0];
+            routeCache[key] = route;
+            renderRoute(route);
+        }
+    } catch (err) {
+        console.error('Directions Error:', err);
+    }
+}
+
+function renderRoute(route) {
+    currentRoute = route;
+
+    // Draw Route
+    drawRoute(route.geometry);
+
+    // Update Stats
+    const durationMins = Math.round(route.duration / 60);
+    const distKm = (route.distance / 1000).toFixed(1);
+
+    navDuration.textContent = `${durationMins} min`;
+    navDistance.textContent = `${distKm} km`;
+
+    // Show Heading Instruction
+    if (route.legs && route.legs[0] && route.legs[0].steps && route.legs[0].steps.length > 0) {
+        const step = route.legs[0].steps[0];
+        if (step.maneuver && step.maneuver.instruction) {
+            navInstruction.textContent = step.maneuver.instruction;
+            navInstruction.classList.remove('hidden');
+        }
+    }
+}
+
+function drawRoute(geometry) {
+    if (map.getSource('route')) {
+        map.getSource('route').setData({
+            type: 'Feature',
+            geometry: geometry
+        });
+    } else {
+        map.addSource('route', {
+            type: 'geojson',
+            data: {
+                type: 'Feature',
+                geometry: geometry
+            }
+        });
+        map.addLayer({
+            id: 'route',
+            type: 'line',
+            source: 'route',
+            layout: {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            paint: {
+                'line-color': '#22c55e', // Green for 'Attend'
+                'line-width': 6,
+                'line-opacity': 0.8
+            }
+        });
+    }
+}
+
+// --- Simulation Logic (For Demo) ---
+// Add a hidden button to trigger simulation if needed, or just exposure
+window.startSimulation = function () {
+    if (!currentRoute) return;
+    let distanceTraveled = 0;
+    const path = currentRoute.geometry.coordinates; // LineString
+    // Simple interpolation
+    let index = 0;
+
+    // Clear Geolocation to stop conflict
+    if (navWatchId) navigator.geolocation.clearWatch(navWatchId);
+
+    const interval = setInterval(() => {
+        if (index >= path.length - 1) {
+            clearInterval(interval);
+            return;
+        }
+        const p1 = path[index];
+        const p2 = path[index + 1];
+
+        // Move
+        updateNavPosition({
+            coords: {
+                longitude: p1[0],
+                latitude: p1[1],
+                speed: 30, // simulated
+                heading: calculateBearing(p1, p2)
+            }
+        });
+        index++;
+    }, 500); // Fast simulation
+};
+
+// ... existing code ...
+
+
+// --- Optimized Mode Switching & Pre-fetching ---
+
+// Mode Buttons Logic
+navModeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const mode = btn.dataset.mode;
+        if (mode === navMode) return; // No change
+
+        // 1. Immediate Visual Update
+        navModeBtns.forEach(b => {
+            b.classList.remove('active-mode', 'text-white', 'bg-white/10');
+            b.classList.add('text-white/50');
+        });
+        btn.classList.add('active-mode', 'text-white', 'bg-white/10');
+        btn.classList.remove('text-white/50');
+
+        // 2. Set State
+        navMode = mode;
+
+        // 3. Instant Data Update (Check cache or fetch)
+        if (userCurrentLocation && navDestination) {
+            // Cancel any pending debounce
+            if (fetchTimeout) clearTimeout(fetchTimeout);
+
+            // Try explicit fetch immediately
+            fetchRoute(userCurrentLocation, navDestination);
+        }
+    });
+});
+
+// Pre-fetch all modes to optimize switching speed
+function prefetchAllModes(start, end) {
+    const modes = ['driving', 'cycling', 'walking'];
+    modes.forEach(mode => {
+        if (mode === navMode) return; // Already fetching current
+        // Background fetch
+        // We use a separate internal fetch to not disturb current UI unless we want to cache it
+        internalFetchRoute(start, end, mode);
+    });
+}
+
+async function internalFetchRoute(start, end, mode) {
+    const key = `${mode}-${start[0].toFixed(3)},${start[1].toFixed(3)}-${end[0].toFixed(3)},${end[1].toFixed(3)}`;
+    if (routeCache[key]) return; // Already cached
+
+    const profile = mode === 'driving' ? 'driving-traffic' : mode;
+    try {
+        const response = await directionsClient.getDirections({
+            profile: profile,
+            waypoints: [{ coordinates: start }, { coordinates: end }],
+            geometries: 'geojson',
+            overview: 'full'
+        }).send();
+
+        if (response && response.body && response.body.routes[0]) {
+            routeCache[key] = response.body.routes[0];
+            // console.log(`Prefetched ${mode}`);
+        }
+    } catch (e) { /* ignore background errors */ }
+}
+
+// Update fetchRoute to trigger prefetch
+const originalFetchRoute = fetchRoute;
+// Overwrite or modify? simpler to modify the existing one below if possible, 
+// but since I am replacing the end of file, I might just leave `fetchRoute` as is 
+// and insert the prefetch call in `updateNavPosition`? 
+// Or better: Let's inject the prefetch call into `debouncedFetchRoute` logic.
+
+// Actually, I'll just hook into the existing flow.
+// When `updateNavPosition` calls `debouncedFetchRoute`, we can add prefetch there.
+
+// spinGlobe(); // Will be preserved by strict replacement if I match context correctly?
+// I will include spinGlobe() call in replacement to be safe.
 
 spinGlobe();

@@ -71,6 +71,14 @@
               d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
         </button>
+        <button id="btn-lang"
+          class="p-2 hover:bg-white/20 rounded transition text-white flex items-center justify-center"
+          title="Change Language">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+          </svg>
+        </button>
       </div>
 
       <!-- Zoom Group -->
@@ -166,6 +174,10 @@
         class="block mt-2 w-full text-center bg-pizza-red hover:bg-red-600 text-white font-bold py-2 rounded-lg transition hidden">
         Event Registration
       </a>
+      <button id="btn-attend"
+        class="block mt-2 w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-lg transition shadow-[0_0_15px_rgba(34,197,94,0.5)] animate-pulse">
+        📍 Attend Party (Navigate)
+      </button>
     </div>
   </div>
 
@@ -202,7 +214,7 @@
             </div>
             <span class="text-xs font-bold">Contribute on GitHub</span>
           </a>
-          <a href="https://docs.google.com/spreadsheets/d/17x4L4vUEKktm1hOBQBRZccX9Cr74yHZkEjxW3k_b-K8/edit?gid=811297100#gid=811297100" 
+          <a href="https://docs.google.com/spreadsheets/d/17x4L4vUEKktm1hOBQBRZccX9Cr74yHZkEjxW3k_b-K8/edit?gid=811297100#gid=811297100"
             target="_blank" class="flex flex-col items-center gap-1 group text-white/70 hover:text-white transition">
             <div class="p-3 bg-white/10 rounded-full group-hover:bg-white/20 transition">
               <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current text-green-400" xmlns="http://www.w3.org/2000/svg">
@@ -219,6 +231,91 @@
           LET'S PARTY!
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- Language Switcher Modal -->
+  <div id="modal-language"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden p-4">
+    <div class="glass-card max-w-2xl w-full p-6 rounded-2xl relative text-white max-h-[80vh] flex flex-col">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-pizza-yellow">Select Language</h2>
+        <button id="close-lang-modal" class="text-white/70 hover:text-white text-2xl">&times;</button>
+      </div>
+      <div id="lang-grid"
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 overflow-y-auto pr-2 custom-scrollbar">
+        <!-- Languages injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Panel (Hidden by default) -->
+  <div id="nav-panel" class="absolute top-4 left-4 z-30 hidden w-[90%] md:w-80">
+    <div class="glass-card p-4 rounded-xl flex flex-col gap-3 bg-black/80 border border-pizza-red/30 shadow-2xl">
+      <!-- Header -->
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-xs text-gray-400 uppercase tracking-widest mb-1">Navigating To</h3>
+          <h2 id="nav-dest-name" class="text-lg font-bold text-pizza-yellow leading-tight">Destination</h2>
+        </div>
+        <button id="btn-exit-nav" class="bg-red-500/20 hover:bg-red-500/40 text-red-300 p-1.5 rounded transition"
+          title="Exit Navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Transport Modes -->
+      <div class="flex bg-white/5 rounded-lg p-1 gap-1">
+        <button
+          class="nav-mode-btn flex-1 py-2 rounded flex justify-center items-center gap-1 text-white/50 hover:bg-white/10 hover:text-white transition active-mode"
+          data-mode="driving">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            <path
+              d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1v-1h5.05a2.5 2.5 0 014.9 0H21a1 1 0 001-1V9a1 1 0 00-1-1h-1l-3-4H6L3 4z" />
+          </svg>
+          <span class="text-xs font-bold">Drive</span>
+        </button>
+        <button
+          class="nav-mode-btn flex-1 py-2 rounded flex justify-center items-center gap-1 text-white/50 hover:bg-white/10 hover:text-white transition"
+          data-mode="cycling">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.947.974.7 1.4a1 1 0 01-.2 1.9L2.618 16a2 2 0 11-.436-4.95l1.02-.51.4-1.2H12a1 1 0 001-1V3a1 1 0 011-1zm-6 3a2 2 0 110 4 2 2 0 010-4z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="text-xs font-bold">Bike</span>
+        </button>
+        <button
+          class="nav-mode-btn flex-1 py-2 rounded flex justify-center items-center gap-1 text-white/50 hover:bg-white/10 hover:text-white transition"
+          data-mode="walking">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-xs font-bold">Walk</span>
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex justify-between items-end border-t border-white/10 pt-2">
+        <div>
+          <div class="text-xs text-gray-400">Est. Time</div>
+          <div id="nav-duration" class="text-2xl font-bold text-white tracking-tight">-- min</div>
+        </div>
+        <div class="text-right">
+          <div class="text-xs text-gray-400">Distance</div>
+          <div id="nav-distance" class="text-lg font-bold text-gray-300">-- km</div>
+        </div>
+      </div>
+
+      <div id="nav-instruction" class="text-sm text-pizza-yellow italic mt-1 font-medium bg-white/5 p-2 rounded hidden">
+        <!-- Dynamic instructions here -->
+      </div>
+
     </div>
   </div>
 
